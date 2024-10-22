@@ -1,0 +1,241 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body{
+    margin: 0.5em 0;
+}
+
+@font-face {
+    font-family: "FancyFont";
+    src: url("Edu_NSW_ACT_Foundation/EduNSWACTFoundation-VariableFont_wght.ttf");
+}
+
+
+#profil{
+    margin-left: 0.5em;
+}
+
+button {
+    position: absolute;
+    top: 2em;
+    right: 1em;
+}
+
+
+.container{
+    min-width: 800px;
+    width: 80%;
+    background-color: rgb(198, 245, 193);
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 2fr 1fr 4fr 4fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 
+    "h h h h"
+    "n n n n"
+    "o k k k"
+    "g g g g"
+    "f f f f"; 
+    gap: 1em;
+    padding: 1em 1em 0 1em;
+}
+
+.el{
+    
+    background-color: rgb(160, 233, 152);
+}
+
+
+header{
+    grid-area: h;
+    font-family: FancyFont;
+    font-size: xx-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64pt;
+}
+header::before, header::after{
+    content: "°-°";
+}
+
+
+nav{
+    grid-area: n;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+nav a:first-child{
+    padding-top: 10px;
+}
+nav a{
+    padding-bottom: 10px;
+    font-size: 10pt;
+}
+nav a:visited{
+    color: darkgreen;
+}
+
+
+
+#osobni-podaci{
+    grid-area: o;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+#osobni-podaci img{
+    height: 10em;
+    width: 10em;
+    border-radius: 50%;
+    border: 1px dashed blue;
+}
+.vazno{
+    font-weight: bolder;
+}
+#osobni-podaci div{
+    margin: 20% 0%;
+    text-align: center;
+}
+#osobni-podaci:last-child{
+    height: 50%;
+}
+#osobni-podaci p{
+    padding: 20% 0%;
+}
+
+
+#kratki-zivotopis{
+    grid-area: k;
+    background-color: rgb(199, 255, 116);
+}
+#kratki-zivotopis > p{
+    padding: 2%;
+    font-size: 1.2em;
+    color: darkslateblue;
+}
+#kratki-zivotopis > p:last-child{
+    color: darkred;
+}
+
+
+@keyframes rotiraj {
+    100%{
+        transform: rotate(180deg);
+    }
+}
+#galerija-slika{
+    grid-area: g;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#galerija-slika div{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+#galerija-slika img{
+    width: 190px;
+    
+}
+#galerija-slika img:hover{
+    animation-name: rotiraj;
+    animation-duration: 3s;
+}
+
+
+footer{
+    grid-area: f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 15px;
+}
+footer p{
+    color: red;
+    padding: 1em;
+}
+footer p span{
+    font-weight: bolder; 
+    text-decoration: underline;
+}
+footer p:nth-child(2) span{
+    text-decoration: inherit;
+}
+
+
+@media (max-width: 400px){ 
+    /* općenito sam morao dosta stvari izmijeniti za manje uređaje */
+    .container{
+        min-width: 100%;
+        width: 100%;
+        /* malo sam izmijenio vrijednosti za retke u gridu radi urednosti */
+        grid-template-rows: 400px 1200px 950px 950px 250px 300px;
+        grid-template-columns: 100%;
+        grid-template-areas: 
+        "f"
+        "g"
+        "k"
+        "o"
+        "n"
+        "h"; 
+        padding: 0em 1em 1em 1em;
+    }
+
+    
+
+    footer{
+        text-align: center;
+        position: relative;
+        /* ovdje sam fiksirao polozaj footera ali, top jer je poredak elemenata obrnut */
+        top: 15px;
+        bottom: 0px;
+    }
+
+    /* ovdje sam stavio column jer slike počinju dosta izlaziti iz diva kad je row*/
+    #galerija-slika div{
+        height: 50%;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+   
+    #osobni-podaci{
+        overflow: hidden;
+    }
+    #osobni-podaci img{
+        height: 20em;
+        width: 20em;
+        
+    }
+
+    #kratki-zivotopis{
+        /* ovdje sam dodao overflow scroll zbog fiksnih vrijednosti grida */
+        overflow: scroll;
+    }
+
+    nav a{
+        font-size: large;
+    }
+
+    header{
+        font-size: 30pt;
+        text-align: center;
+    }
+    header::before, header::after{
+        content: "°-°";
+    }
+
+}
